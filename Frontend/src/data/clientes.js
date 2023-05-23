@@ -4,7 +4,8 @@
 //para obtener todos los clientes
 export async function obtenerClientes() {
     // *los metodos get vienen por defecto y no hace falta ponerlos
-    const respuesta = await fetch(import.meta.env.VITE_API_URL); //metodo - get por defecto
+    //http://localhost:4000/clientes - en desarrollo
+    const respuesta = await fetch(import.meta.env.VITE_API_URL + '/clientes'); //metodo - get por defecto
 
     const resultado = await respuesta.json();
 
@@ -13,7 +14,7 @@ export async function obtenerClientes() {
  
 //para obtener solo un cliente en especifico
 export async function obtenerCliente(id) {
-    const respuesta = await fetch(`${import.meta.env.VITE_API_URL}/${id}`);
+    const respuesta = await fetch(`${import.meta.env.VITE_API_URL}/clientes/${id}`);
 
     const resultado = await respuesta.json();
 
@@ -22,7 +23,7 @@ export async function obtenerCliente(id) {
 
 export async function agregarCliente(datos) {
     try {
-        const respuesta = await fetch(import.meta.env.VITE_API_URL, {
+        const respuesta = await fetch(import.meta.env.VITE_API_URL + '/clientes', {
             method: 'POST', //aqui si se pone el metodo por que es otro, en este caso "PUT"
             body: JSON.stringify(datos), //en el body, los datos que se van a enviar
             headers: { //definir que tipo de informacion se esta mandando
@@ -38,7 +39,7 @@ export async function agregarCliente(datos) {
 
 export async function actualizarCliente(id, datos) {
     try {
-        const respuesta = await fetch(`${import.meta.env.VITE_API_URL}/${id}`, {
+        const respuesta = await fetch(`${import.meta.env.VITE_API_URL}/clientes/${id}`, {
             method: 'PUT', //metodo para actualizar
             body: JSON.stringify(datos), //manda los datos actualizados
             headers: {
@@ -58,7 +59,7 @@ export async function eliminarCliente(id) {
             method: 'DELETE'
         })*/
 
-        await fetch(`${import.meta.env.VITE_API_URL}/${id}`, {method: 'DELETE'});
+        await fetch(`${import.meta.env.VITE_API_URL}/clientes/${id}`, {method: 'DELETE'});
         
         //await respuesta.json(); //da un error de sintaxis
     } catch (error) {
